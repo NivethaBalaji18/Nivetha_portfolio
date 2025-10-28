@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nivetha V - Personal Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Base Styles */
+        :root {
+            --primary-color: #00e0ff; /* Neon Cyan for a premium glow */
+            --text-color: #f0f0f0;
+            --bg-color: #0d0d0d; /* Very dark black */
+            --secondary-bg-color: #1a1a1a;
+            --font-family: 'Arial', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-family);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color); /* Neon effect */
+        }
+
+        h2 {
+            font-size: 2.5em;
+            text-align: center;
+            padding-top: 20px;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease, text-shadow 0.3s;
+        }
+
+        a:hover {
+            color: white;
+            text-shadow: 0 0 5px white;
+        }
+
+        .section-padding {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--secondary-bg-color);
+            margin: 40px auto;
+            width: 80%;
+        }
+
+        /* === Navigation Bar === */
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+        }
+
+        #navbar a {
+            color: var(--text-color);
+            padding: 10px 20px;
+            margin-left: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+
+        #navbar a:hover {
+            background-color: var(--primary-color);
+            color: var(--bg-color);
+            box-shadow: 0 0 10px var(--primary-color);
+        }
+
+        /* === Home Section (Hero) === */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            padding-top: 80px;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .home-content {
+            max-width: 500px;
+            text-align: left;
+        }
+
+        .home-content h1 {
+            font-size: 4em;
+            margin-bottom: 10px;
+        }
+
+        .name-highlight {
+            color: white;
+            text-shadow: 0 0 15px white;
+        }
+
+        .home-content p {
+            font-size: 1.8em;
+            color: var(--primary-color);
+        }
+
+        .home-photo img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 0 30px rgba(0, 224, 255, 0.6); /* Premium glow */
+        }
+
+        /* Home Section Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .animate-text, .animate-photo {
+            opacity: 0;
+        }
+
+        .animate-text:nth-child(1) {
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .animate-text:nth-child(2) {
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .animate-photo {
+            animation: fadeInScale 1.5s ease-out 1.5s forwards;
+        }
+
+        /* === Skills Section === */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-item {
+            background-color: var(--secondary-bg-color);
+            padding: 25px;
+            border-radius: 10px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 224, 255, 0.8);
+        }
+
+        .skill-icon {
+            font-size: 3.5em;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            text-shadow: 0 0 8px var(--primary-color);
+        }
+
+        .skill-bar-container {
+            background-color: #333;
+            border-radius: 5px;
+            height: 12px;
+            margin: 15px 0 10px 0;
+            overflow: hidden;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .skill-bar {
+            height: 100%;
+            background-color: var(--primary-color);
+            width: 0; /* JS sets the final width */
+            transition: width 1.5s ease-out;
+            box-shadow: 0 0 5px var(--primary-color);
+        }
+
+        /* === Education Section === */
+        .education-container {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .education-item {
+            background-color: var(--secondary-bg-color);
+            padding: 20px;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 5px;
+            transition: box-shadow 0.3s;
+        }
+
+        .education-item:hover {
+            box-shadow: 0 0 15px rgba(0, 224, 255, 0.6);
+        }
+
+        .education-item h3 {
+            margin-bottom: 5px;
+            font-size: 1.4em;
+            color: var(--text-color);
+            text-shadow: none;
+        }
+
+        .education-item .institution, .education-item .year {
+            color: var(--primary-color);
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+        .edu-icon {
+            float: right;
+            font-size: 1.5em;
+            color: var(--primary-color);
+        }
+
+        /* === Certifications & Contact Section === */
+        .certifications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .certification-item {
+            background-color: var(--secondary-bg-color);
+            padding: 15px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1em;
+            transition: transform 0.3s;
+        }
+
+        .certification-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 0 10px rgba(0, 224, 255, 0.4);
+        }
+
+        .certification-item i {
+            color: var(--primary-color);
+            font-size: 1.5em;
+        }
+        
+        .cert-link {
+            font-size: 0.9em;
+            margin-left: auto;
+            border: 1px solid var(--primary-color);
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        .contact-heading {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .contact-details {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-details i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+        
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .social-links a {
+            font-size: 2em;
+        }
+
+        /* === Responsiveness === */
+        @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 100px;
+            }
+
+            .home-content {
+                order: 2;
+            }
+
+            .home-photo {
+                order: 1;
+            }
+
+            .home-content h1 {
+                font-size: 3em;
+            }
+
+            .home-content p {
+                font-size: 1.5em;
+            }
+
+            #navbar {
+                justify-content: space-around;
+                padding: 10px 0;
+            }
+
+            #navbar a {
+                padding: 5px 10px;
+                margin: 0;
+                font-size: 0.8em;
+            }
+
+            .skills-container {
+                gap: 20px;
+            }
+
+            .skill-item {
+                width: 45%;
+            }
+
+            .contact-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skill-item {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav id="navbar">
+        <a href="#home">Home</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+        <a href="#certifications">Certifications</a>
+    </nav>
+
+    <section id="home" class="hero-section">
+        <div class="home-content">
+            <h1 class="animate-text">Hi I'm <span class="name-highlight">Nivetha</span></h1>
+            <p class="animate-text">UI UX Designer | Frontend developer 
+            <p class="animate-text"> I am an enthusisatic fresher,
+                 willing to develop my career in reputed organisations </p>
+        </div>
+        <div class="home-photo">
+            <img src="image/Portfolio_image.png" alt="Nivetha's Photo" class="animate-photo">
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="skills" class="section-padding">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <div class="skill-item">
+                <i class="fa-brands fa-html5 skill-icon"></i>
+                <p>HTML</p>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" data-skill-level="80%"></div>
+                </div>
+                <p class="skill-percentage">80%</p>
+            </div>
+            <div class="skill-item">
+                <i class="fa-brands fa-css3-alt skill-icon"></i>
+                <p>CSS</p>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" data-skill-level="80%"></div>
+                </div>
+                <p class="skill-percentage">80%</p>
+            </div>
+            <div class="skill-item">
+                <i class="fa-brands fa-js skill-icon"></i>
+                <p>JavaScript</p>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" data-skill-level="70%"></div>
+                </div>
+                <p class="skill-percentage">70%</p>
+            </div>
+            <div class="skill-item">
+                <i class="fa-brands fa-react skill-icon"></i>
+                <p>React</p>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" data-skill-level="60%"></div>
+                </div>
+                <p class="skill-percentage">60%</p>
+            </div>
+            <div class="skill-item">
+                <i class="fa-brands fa-node-js skill-icon"></i>
+                <p>Node.js</p>
+                <div class="skill-bar-container">
+                    <div class="skill-bar" data-skill-level="60%"></div>
+                </div>
+                <p class="skill-percentage">60%</p>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="education" class="section-padding">
+        <h2>Education</h2>
+        <div class="education-container">
+            
+            <div class="education-item">
+                <i class="fa-solid fa-graduation-cap edu-icon"></i>
+                <h3>Master of Business Administration (Information Systems)</h3>
+                <p class="institution">Bharathiar University (SDE)</p>
+                <p class="year">2021-2023</p>
+            </div>
+            <div class="education-item">
+                <i class="fa-solid fa-graduation-cap edu-icon"></i>
+                <h3>Bachelor of Science (Information Technology)</h3>
+                <p class="institution">Kongu Arts and Science College</p>
+                <p class="year">2017-2020</p>
+            </div>
+        </div>
+    </section>
+
+    <hr>
+
+    <section id="certifications" class="section-padding">
+        <h2>Certifications</h2>
+        <div class="certifications-list">
+            <div class="certification-item">
+                <i class="fa-solid fa-certificate"></i>
+                <p>UI UX DESIGN Master class (Internship in UI/UX Design, NoviTech R&D Private Limited) </p>
+                <a href="image/Internship_certificate.pdf" target="_blank" class="cert-link">View Certificate</a>
+            </div>
+            <div class="certification-item">
+                <i class="fa-solid fa-certificate"></i>
+                <p>MERN workshop (Hands on Training in MERN Stack Development, TECHVOLT SOFTWARE PVT.LTD)</p>
+                <a href="image/Nivetha V.pdf" target="_blank" class="cert-link">View Certificate</a>
+            </div>
+        </div>
+
+        <hr>
+
+        <h2 class="contact-heading">Contact & Social</h2>
+        <div class="contact-details">
+            <div class="contact-item">
+                <i class="fa-solid fa-phone"></i> 
+                <p>Phone:<a href="tel:8610681576">8610681576</a></p>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i> 
+                <p>Email: <a href="mailto:nivenivi2000@gmail.com">nivenivi2000@gmail.com</a></p>
+            </div>
+        </div>
+        
+        <div class="social-links">
+        <div class="social-links">
+        <div class="social-links">
+        <div class="social-links">
+            <a href="[https://github.com/NivethaBalaji18/Sample-Ecommerce-site]",target="https://github.com/NivethaBalaji18/Sample-Ecommerce-site"
+             title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="[https://www.linkedin.com/in/nivetha-vatchmani-968528215?trk=contact-info]",target="_blank" 
+            title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // === 1. Skill Bar Animation (Intersection Observer) ===
+            const skillItems = document.querySelectorAll('.skill-item');
+
+            const observerOptions = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.4 // trigger when 40% of the item is visible
+            };
+
+            const skillObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const skillItem = entry.target;
+                        const skillBar = skillItem.querySelector('.skill-bar');
+                        const skillLevel = skillBar.getAttribute('data-skill-level');
+
+                        // Set the width to trigger the CSS transition (animation)
+                        skillBar.style.width = skillLevel;
+
+                        // Stop observing after the animation has been triggered
+                        observer.unobserve(skillItem);
+                    }
+                });
+            }, observerOptions);
+
+            // Attach the observer to each skill item
+            skillItems.forEach(item => {
+                skillObserver.observe(item);
+            });
+
+
+            // === 2. Smooth Scrolling for Navigation (Routing) ===
+            const navLinks = document.querySelectorAll('#navbar a');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    const targetId = link.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        // Scroll smoothly to the target element, subtracting the fixed navbar height (approx 60px)
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 60,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
